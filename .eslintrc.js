@@ -10,7 +10,7 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    indent: ["warn", 2],
+    indent: ["warn", 2, { SwitchCase: 1 }],
     "linebreak-style": ["warn", "windows"],
     quotes: ["warn", "double"],
     semi: ["warn", "always"],

@@ -23,25 +23,46 @@
         <div class="main__container">
           <div class="calculator">
             <span class="calculator__value">0</span>
-            <button class="calculator__clean">AC</button>
-            <button class="calculator__sign-change-btn">&plusmn</button>
-            <button class="calculator__percent-btn">%</button>
-            <button class="calculator__division-btn">&divide</button>
-            <button class="calculator__seven-btn">7</button>
-            <button class="calculator__eight-btn">8</button>
-            <button class="calculator__nine-btn">9</button>
-            <button class="calculator__mult-btn">&times</button>
-            <button class="calculator__four-btn">4</button>
-            <button class="calculator__five-btn">5</button>
-            <button class="calculator__six-btn">6</button>
-            <button class="calculator__minus-btn">-</button>
-            <button class="calculator__one-btn">1</button>
-            <button class="calculator__two-btn">2</button>
-            <button class="calculator__three-btn">3</button>
-            <button class="calculator__plus-btn">+</button>
-            <button class="calculator__null-btn">0</button>
-            <button class="calculator__comma-btn">,</button>
-            <button class="calculator__calc-btn">=</button>
+            <button class="calculator__clean" data-btn-type="clean">AC</button>
+            <button
+              class="calculator__sign-change-btn"
+              data-btn-type="sign-change"
+            >
+              &plusmn
+            </button>
+            <button class="calculator__percent-btn" data-btn-type="percent">
+              %
+            </button>
+            <button class="calculator__division-btn" data-btn-type="division">
+              &divide
+            </button>
+            <button class="calculator__seven-btn" data-btn-type="seven">
+              7
+            </button>
+            <button class="calculator__eight-btn" data-btn-type="eight">
+              8
+            </button>
+            <button class="calculator__nine-btn" data-btn-type="nine">9</button>
+            <button class="calculator__mult-btn" data-btn-type="mult">
+              &times
+            </button>
+            <button class="calculator__four-btn" data-btn-type="four">4</button>
+            <button class="calculator__five-btn" data-btn-type="five">5</button>
+            <button class="calculator__six-btn" data-btn-type="six">6</button>
+            <button class="calculator__minus-btn" data-btn-type="minus">
+              -
+            </button>
+            <button class="calculator__one-btn" data-btn-type="one">1</button>
+            <button class="calculator__two-btn" data-btn-type="two">2</button>
+            <button class="calculator__three-btn" data-btn-type="three">
+              3
+            </button>
+            <button class="calculator__plus-btn" data-btn-type="plus">+</button>
+            <button class="calculator__null-btn" data-btn-type="null">0</button>
+            <button class="calculator__comma-btn" data-btn-type="comma">
+              ,
+            </button>
+            <button class="calculator__calc-btn" data-btn-type="calc">=</button>
           </div>
         </div>
       </main>
@@ -64,6 +85,6 @@
         </div>
       </footer>
     </div>
-    <script src="./build/bundle.js"></script>
+    <script src="./assets/scripts/index.js" type="module"></script>
   </body>
 </html>
