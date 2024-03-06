@@ -1,3 +1,58 @@
 @import "./vars";
 
-// This is file for common style templates
+// Global container of whole page
+.global-container {
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// Default settings of headlines, you only need to choose font size, line height and text color
+@mixin default-h($font-size, $line-height, $text-color) {
+  padding: 8px;
+  font-family: "Roboto";
+  font-weight: 700;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $text-color;
+}
+
+// Default settings of paragraphs, you only need to choose font size, line height and text color
+@mixin default-p($font-size, $line-height, $text-color) {
+  padding: 4px;
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $text-color;
+}
+
+// Mixin for button, already uses some default settings, but unique parameters are still needed
+@mixin default-btn($max-width, $text-color, $bg-color) {
+  max-width: $max-width;
+  width: 100%;
+  padding: 20px;
+  font-family: $font;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 22px;
+  text-align: center;
+  color: $text-color;
+  background-color: $color-bg-dark;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    transform: scale(1.1);
+    color: $color-link-active;
+  }
+  &:disabled {
+    transform: none;
+    color: $color-text-gray;
+    filter: grayscale(0.5);
+  }
+}

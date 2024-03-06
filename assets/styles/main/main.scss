@@ -3,4 +3,12 @@
 @import "../global/header";
 @import "../global/footer";
 
-// Here will be styles for main page
+.main {
+  flex-grow: 1;
+  &__container {
+    padding: 20px 40px;
+    @media (max-width: $laptop-l) {
+      padding-inline: 20px;
+    }
+  }
+}

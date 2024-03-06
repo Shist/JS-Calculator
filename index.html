@@ -3,15 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./assets/images/calculator.ico"
+    />
     <link rel="stylesheet" href="./assets/styles/reset/reset.css" />
     <link rel="stylesheet" href="./assets/styles/main/main.css" />
     <title>JS Calculator</title>
   </head>
   <body>
     <div class="global-container">
-      <header class="header"></header>
-      <main class="main"></main>
-      <footer class="footer"></footer>
+      <header class="header">
+        <div class="header__container">
+          <h1 class="header__headline">Calculator</h1>
+        </div>
+      </header>
+      <main class="main">
+        <div class="main__container"></div>
+      </main>
+      <footer class="footer">
+        <div class="footer__container">
+          <div class="footer__git-link-wrapper">
+            <a
+              href="https://github.com/Shist/JS-Calculator"
+              target="_blank"
+              class="footer__git-link"
+            >
+              <img
+                src="./assets/images/github.png"
+                alt="GitHub"
+                class="footer__git-img"
+              />
+              <p class="footer__git-text">This project on GitHub</p>
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
     <script src="./build/bundle.js"></script>
   </body>

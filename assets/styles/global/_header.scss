@@ -2,5 +2,23 @@
 @import "./template";
 
 .header {
-  // Here will be styles for header
+  background-color: $color-bg-dark;
+  &__container {
+    padding: 20px 40px;
+    display: flex;
+    @media (max-width: $laptop-l) {
+      padding-inline: 20px;
+    }
+    .header__headline {
+      @include default-h(45px, 45px, $color-text-light);
+      @media (max-width: $laptop-l) {
+        font-size: 36px;
+        line-height: 36px;
+      }
+      @media (max-width: $laptop-s) {
+        font-size: 32px;
+        line-height: 32px;
+      }
+    }
+  }
 }
