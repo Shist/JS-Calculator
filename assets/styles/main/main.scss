@@ -34,82 +34,72 @@
       font-size: 42px;
     }
   }
-  &__clean {
-    grid-area: clean;
+  .spec-operation-btn {
     background-color: $color-gray;
+  }
+  .basic-operation-btn {
+    background-color: $color-orange;
+  }
+  .digit-btn {
+    background-color: $color-light-gray;
+  }
+  &__clean-btn {
+    grid-area: clean;
   }
   &__sign-change-btn {
     grid-area: sign-change;
-    background-color: $color-gray;
   }
   &__percent-btn {
     grid-area: percent;
-    background-color: $color-gray;
   }
   &__division-btn {
     grid-area: division;
-    background-color: $color-orange;
   }
   &__seven-btn {
     grid-area: seven;
-    background-color: $color-light-gray;
   }
   &__eight-btn {
     grid-area: eight;
-    background-color: $color-light-gray;
   }
   &__nine-btn {
     grid-area: nine;
-    background-color: $color-light-gray;
   }
   &__mult-btn {
     grid-area: mult;
-    background-color: $color-orange;
   }
   &__four-btn {
     grid-area: four;
-    background-color: $color-light-gray;
   }
   &__five-btn {
     grid-area: five;
-    background-color: $color-light-gray;
   }
   &__six-btn {
     grid-area: six;
-    background-color: $color-light-gray;
   }
   &__minus-btn {
     grid-area: minus;
-    background-color: $color-orange;
   }
   &__one-btn {
     grid-area: one;
-    background-color: $color-light-gray;
   }
   &__two-btn {
     grid-area: two;
-    background-color: $color-light-gray;
   }
   &__three-btn {
     grid-area: three;
-    background-color: $color-light-gray;
   }
   &__plus-btn {
     grid-area: plus;
-    background-color: $color-orange;
   }
   &__null-btn {
     grid-area: null-digit;
-    background-color: $color-light-gray;
     border-radius: 0 0 0 10px;
   }
   &__comma-btn {
     grid-area: comma;
-    background-color: $color-light-gray;
   }
   &__calc-btn {
     grid-area: calc;
-    background-color: $color-orange;
     border-radius: 0 0 10px 0;
   }
   button {

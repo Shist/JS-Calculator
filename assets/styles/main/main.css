@@ -47,6 +47,11 @@
   min-height: 100vh;
 }
 
+.active-operation-btn {
+  color: #ff9b0a !important;
+  background-color: white !important;
+}
+
 /* font "Roboto", normal, 400 */
 @font-face {
   font-family: "Roboto";
@@ -94,6 +99,11 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.active-operation-btn {
+  color: #ff9b0a !important;
+  background-color: white !important;
 }
 
 .header {
@@ -178,6 +188,11 @@
   min-height: 100vh;
 }
 
+.active-operation-btn {
+  color: #ff9b0a !important;
+  background-color: white !important;
+}
+
 .footer {
   background-color: #181818;
 }
@@ -250,82 +265,72 @@
     font-size: 42px;
   }
 }
-.calculator__clean {
-  grid-area: clean;
+.calculator .spec-operation-btn {
   background-color: #535353;
+}
+.calculator .basic-operation-btn {
+  background-color: #ff9b0a;
+}
+.calculator .digit-btn {
+  background-color: #7d7d7d;
+}
+.calculator__clean-btn {
+  grid-area: clean;
 }
 .calculator__sign-change-btn {
   grid-area: sign-change;
-  background-color: #535353;
 }
 .calculator__percent-btn {
   grid-area: percent;
-  background-color: #535353;
 }
 .calculator__division-btn {
   grid-area: division;
-  background-color: #ff9b0a;
 }
 .calculator__seven-btn {
   grid-area: seven;
-  background-color: #7d7d7d;
 }
 .calculator__eight-btn {
   grid-area: eight;
-  background-color: #7d7d7d;
 }
 .calculator__nine-btn {
   grid-area: nine;
-  background-color: #7d7d7d;
 }
 .calculator__mult-btn {
   grid-area: mult;
-  background-color: #ff9b0a;
 }
 .calculator__four-btn {
   grid-area: four;
-  background-color: #7d7d7d;
 }
 .calculator__five-btn {
   grid-area: five;
-  background-color: #7d7d7d;
 }
 .calculator__six-btn {
   grid-area: six;
-  background-color: #7d7d7d;
 }
 .calculator__minus-btn {
   grid-area: minus;
-  background-color: #ff9b0a;
 }
 .calculator__one-btn {
   grid-area: one;
-  background-color: #7d7d7d;
 }
 .calculator__two-btn {
   grid-area: two;
-  background-color: #7d7d7d;
 }
 .calculator__three-btn {
   grid-area: three;
-  background-color: #7d7d7d;
 }
 .calculator__plus-btn {
   grid-area: plus;
-  background-color: #ff9b0a;
 }
 .calculator__null-btn {
   grid-area: null-digit;
-  background-color: #7d7d7d;
   border-radius: 0 0 0 10px;
 }
 .calculator__comma-btn {
   grid-area: comma;
-  background-color: #7d7d7d;
 }
 .calculator__calc-btn {
   grid-area: calc;
-  background-color: #ff9b0a;
   border-radius: 0 0 10px 0;
 }
 .calculator button {

@@ -54,6 +54,7 @@ class Controller {
       case Model.BTN_TYPE.DIVISION:
         this.model.setDivisionSign();
         this.view.setCalculatorValue(this.model.currFirstValue);
+        this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.DIVISION);
         break;
       case Model.BTN_TYPE.SEVEN:
         this.model.addNumberToValue("7");
@@ -62,6 +63,7 @@ class Controller {
             ? this.model.currFirstValue
             : this.model.currSecondValue
         );
+        this.view.cleanAllOperationBtns();
         break;
       case Model.BTN_TYPE.EIGHT:
         this.model.addNumberToValue("8");
@@ -70,6 +72,7 @@ class Controller {
             ? this.model.currFirstValue
             : this.model.currSecondValue
         );
+        this.view.cleanAllOperationBtns();
         break;
       case Model.BTN_TYPE.NINE:
         this.model.addNumberToValue("9");
@@ -78,10 +81,12 @@ class Controller {
             ? this.model.currFirstValue
             : this.model.currSecondValue
         );
+        this.view.cleanAllOperationBtns();
         break;
       case Model.BTN_TYPE.MULT:
         this.model.setMultSign();
         this.view.setCalculatorValue(this.model.currFirstValue);
+        this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MULT);
         break;
       case Model.BTN_TYPE.FOUR:
         this.model.addNumberToValue("4");
@@ -90,6 +95,7 @@ class Controller {
             ? this.model.currFirstValue
             : this.model.currSecondValue
         );
+        this.view.cleanAllOperationBtns();
         break;
       case Model.BTN_TYPE.FIVE:
         this.model.addNumberToValue("5");
@@ -98,6 +104,7 @@ class Controller {
             ? this.model.currFirstValue
             : this.model.currSecondValue
         );
+        this.view.cleanAllOperationBtns();
         break;
       case Model.BTN_TYPE.SIX:
         this.model.addNumberToValue("6");
@@ -106,10 +113,12 @@ class Controller {
             ? this.model.currFirstValue
             : this.model.currSecondValue
         );
+        this.view.cleanAllOperationBtns();
         break;
       case Model.BTN_TYPE.MINUS:
         this.model.setMinusSign();
         this.view.setCalculatorValue(this.model.currFirstValue);
+        this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MINUS);
         break;
       case Model.BTN_TYPE.ONE:
         this.model.addNumberToValue("1");
@@ -118,6 +127,7 @@ class Controller {
             ? this.model.currFirstValue
             : this.model.currSecondValue
         );
+        this.view.cleanAllOperationBtns();
         break;
       case Model.BTN_TYPE.TWO:
         this.model.addNumberToValue("2");
@@ -126,6 +136,7 @@ class Controller {
             ? this.model.currFirstValue
             : this.model.currSecondValue
         );
+        this.view.cleanAllOperationBtns();
         break;
       case Model.BTN_TYPE.THREE:
         this.model.addNumberToValue("3");
@@ -134,10 +145,12 @@ class Controller {
             ? this.model.currFirstValue
             : this.model.currSecondValue
         );
+        this.view.cleanAllOperationBtns();
         break;
       case Model.BTN_TYPE.PLUS:
         this.model.setPlusSign();
         this.view.setCalculatorValue(this.model.currFirstValue);
+        this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.PLUS);
         break;
       case Model.BTN_TYPE.NULL:
         this.model.addNumberToValue("0");
@@ -146,6 +159,7 @@ class Controller {
             ? this.model.currFirstValue
             : this.model.currSecondValue
         );
+        this.view.cleanAllOperationBtns();
         break;
       case Model.BTN_TYPE.COMMA:
         this.model.addCommaToValue();
@@ -154,10 +168,12 @@ class Controller {
             ? this.model.currFirstValue
             : this.model.currSecondValue
         );
+        this.view.cleanAllOperationBtns();
         break;
       case Model.BTN_TYPE.CALC:
         this.model.calculateResult();
         this.view.setCalculatorValue(this.model.currFirstValue);
+        this.view.cleanAllOperationBtns();
         break;
       default:
         console.warn(

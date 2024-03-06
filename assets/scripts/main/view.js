@@ -5,9 +5,12 @@ class View {
   static CLASS = {
     CALCULATOR: {
       WRAPPER: "calculator",
-      BTN: "calculator-btn",
+      SPEC_BTN: "spec-operation-btn",
+      BASIC_BTN: "basic-operation-btn",
+      ACTIVE_BASIC_BTN: "active-operation-btn",
+      DIGIT_BTN: "digit-btn",
       VALUE: "calculator__value",
-      CLEAN: "calculator__clean",
+      CLEAN: "calculator__clean-btn",
       SIGN_CHANGE: "calculator__sign-change-btn",
       PERCENT: "calculator__percent-btn",
       DIVISION: "calculator__division-btn",
@@ -47,6 +50,22 @@ class View {
       newValue.replace(/\./g, ",");
 
     return this;
+  }
+
+  cleanAllOperationBtns() {
+    document
+      .querySelectorAll(`.${View.CLASS.CALCULATOR.BASIC_BTN}`)
+      .forEach((btn) =>
+        btn.classList.remove(View.CLASS.CALCULATOR.ACTIVE_BASIC_BTN)
+      );
+  }
+
+  makeOperationBtnActive(btnClass) {
+    this.cleanAllOperationBtns();
+
+    document
+      .querySelector(`.${btnClass}`)
+      .classList.add(View.CLASS.CALCULATOR.ACTIVE_BASIC_BTN);
   }
 }
 
