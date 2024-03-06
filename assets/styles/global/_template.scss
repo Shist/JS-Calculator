@@ -29,30 +29,3 @@
   line-height: $line-height;
   color: $text-color;
 }
-
-// Mixin for button, already uses some default settings, but unique parameters are still needed
-@mixin default-btn($max-width, $text-color, $bg-color) {
-  max-width: $max-width;
-  width: 100%;
-  padding: 20px;
-  font-family: $font;
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 22px;
-  text-align: center;
-  color: $text-color;
-  background-color: $color-bg-dark;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-  &:hover {
-    transform: scale(1.1);
-    color: $color-link-active;
-  }
-  &:disabled {
-    transform: none;
-    color: $color-text-gray;
-    filter: grayscale(0.5);
-  }
-}
