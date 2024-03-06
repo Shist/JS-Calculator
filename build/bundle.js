@@ -1,0 +1,2 @@
+(()=>{"use strict";const t=class{},s=class{},e=class{constructor(t,s){this.view=t,this.model=s}init(){}};document.addEventListener("DOMContentLoaded",(()=>{new e(new s,new t).init()}))})();
+//# sourceMappingURL=bundle.js.map

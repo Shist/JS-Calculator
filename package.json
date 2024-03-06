@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/Shist/JS-Calculator/issues"
   },
-  "homepage": "https://github.com/Shist/JS-Calculator#readme"
+  "homepage": "https://github.com/Shist/JS-Calculator#readme",
+  "devDependencies": {
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  }
 }
