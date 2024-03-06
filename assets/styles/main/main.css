@@ -222,11 +222,91 @@
   }
 }
 
+.calculator {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: "value        value         value     value" "clean        sign-change   percent   division" "seven        eight         nine      mult" "four         five          six       minus" "one          two           three     plus" "null-digit   null-digit    comma     calc";
+  background-color: gainsboro;
+}
+.calculator__value {
+  grid-area: value;
+  padding: 8px;
+  font-family: "Roboto";
+  font-size: 56px;
+  align-self: center;
+  text-align: end;
+}
+.calculator__clean {
+  grid-area: clean;
+}
+.calculator__sign-change-btn {
+  grid-area: sign-change;
+}
+.calculator__percent-btn {
+  grid-area: percent;
+}
+.calculator__division-btn {
+  grid-area: division;
+}
+.calculator__seven-btn {
+  grid-area: seven;
+}
+.calculator__eight-btn {
+  grid-area: eight;
+}
+.calculator__nine-btn {
+  grid-area: nine;
+}
+.calculator__mult-btn {
+  grid-area: mult;
+}
+.calculator__four-btn {
+  grid-area: four;
+}
+.calculator__five-btn {
+  grid-area: five;
+}
+.calculator__six-btn {
+  grid-area: six;
+}
+.calculator__minus-btn {
+  grid-area: minus;
+}
+.calculator__one-btn {
+  grid-area: one;
+}
+.calculator__two-btn {
+  grid-area: two;
+}
+.calculator__three-btn {
+  grid-area: three;
+}
+.calculator__plus-btn {
+  grid-area: plus;
+}
+.calculator__null-btn {
+  grid-area: null-digit;
+}
+.calculator__comma-btn {
+  grid-area: comma;
+}
+.calculator__calc-btn {
+  grid-area: calc;
+}
+.calculator button {
+  font-family: "Roboto";
+  font-size: 36px;
+}
+
 .main {
   flex-grow: 1;
+  display: flex;
 }
 .main__container {
   padding: 20px 40px;
+  flex-grow: 1;
 }
 @media (max-width: 1024px) {
   .main__container {

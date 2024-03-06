@@ -3,10 +3,96 @@
 @import "../global/header";
 @import "../global/footer";
 
+.calculator {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "value        value         value     value"
+    "clean        sign-change   percent   division"
+    "seven        eight         nine      mult"
+    "four         five          six       minus"
+    "one          two           three     plus"
+    "null-digit   null-digit    comma     calc";
+  background-color: gainsboro;
+  &__value {
+    grid-area: value;
+    padding: 8px;
+    font-family: "Roboto";
+    font-size: 56px;
+    align-self: center;
+    text-align: end;
+  }
+  &__clean {
+    grid-area: clean;
+  }
+  &__sign-change-btn {
+    grid-area: sign-change;
+  }
+  &__percent-btn {
+    grid-area: percent;
+  }
+  &__division-btn {
+    grid-area: division;
+  }
+  &__seven-btn {
+    grid-area: seven;
+  }
+  &__eight-btn {
+    grid-area: eight;
+  }
+  &__nine-btn {
+    grid-area: nine;
+  }
+  &__mult-btn {
+    grid-area: mult;
+  }
+  &__four-btn {
+    grid-area: four;
+  }
+  &__five-btn {
+    grid-area: five;
+  }
+  &__six-btn {
+    grid-area: six;
+  }
+  &__minus-btn {
+    grid-area: minus;
+  }
+  &__one-btn {
+    grid-area: one;
+  }
+  &__two-btn {
+    grid-area: two;
+  }
+  &__three-btn {
+    grid-area: three;
+  }
+  &__plus-btn {
+    grid-area: plus;
+  }
+  &__null-btn {
+    grid-area: null-digit;
+  }
+  &__comma-btn {
+    grid-area: comma;
+  }
+  &__calc-btn {
+    grid-area: calc;
+  }
+  button {
+    font-family: "Roboto";
+    font-size: 36px;
+  }
+}
+
 .main {
   flex-grow: 1;
+  display: flex;
   &__container {
     padding: 20px 40px;
+    flex-grow: 1;
     @media (max-width: $laptop-l) {
       padding-inline: 20px;
     }
