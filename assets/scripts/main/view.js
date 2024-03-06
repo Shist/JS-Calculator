@@ -44,7 +44,7 @@ class View {
 
   setCalculatorValue(newValue) {
     document.querySelector(`.${View.CLASS.CALCULATOR.VALUE}`).textContent =
-      newValue;
+      newValue.replace(/\./g, ",");
 
     return this;
   }

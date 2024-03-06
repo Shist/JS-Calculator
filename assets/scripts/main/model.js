@@ -72,19 +72,39 @@ class Model {
   }
 
   setDivisionSign() {
+    if (this.currOperation === Model.OPERATION_TYPE.DIVISION) {
+      this.calculateResult();
+    }
+
     this.currOperation = Model.OPERATION_TYPE.DIVISION;
+    this.currSecondValue = "0";
   }
 
   setMultSign() {
+    if (this.currOperation === Model.OPERATION_TYPE.MULT) {
+      this.calculateResult();
+    }
+
     this.currOperation = Model.OPERATION_TYPE.MULT;
+    this.currSecondValue = "0";
   }
 
   setMinusSign() {
+    if (this.currOperation === Model.OPERATION_TYPE.MINUS) {
+      this.calculateResult();
+    }
+
     this.currOperation = Model.OPERATION_TYPE.MINUS;
+    this.currSecondValue = "0";
   }
 
   setPlusSign() {
+    if (this.currOperation === Model.OPERATION_TYPE.PLUS) {
+      this.calculateResult();
+    }
+
     this.currOperation = Model.OPERATION_TYPE.PLUS;
+    this.currSecondValue = "0";
   }
 
   addNumberToValue(numStr) {
@@ -118,23 +138,25 @@ class Model {
   addCommaToValue() {
     if (this.currOperation === Model.OPERATION_TYPE.NONE) {
       if (
-        !this.currFirstValue.includes(",") ||
+        !this.currFirstValue.includes(".") ||
         this.currFirstValue.length < 9
       ) {
-        this.currFirstValue += ",";
+        this.currFirstValue += ".";
       }
     } else {
       if (
-        !this.currSecondValue.includes(",") ||
+        !this.currSecondValue.includes(".") ||
         this.currSecondValue.length < 9
       ) {
-        this.currSecondValue += ",";
+        this.currSecondValue += ".";
       }
     }
   }
 
   calculateResult() {
     switch (this.currOperation) {
+      case Model.OPERATION_TYPE.NONE:
+        break;
       case Model.OPERATION_TYPE.DIVISION:
         this.currFirstValue = (
           Number(this.currFirstValue) / Number(this.currSecondValue)

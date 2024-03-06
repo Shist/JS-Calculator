@@ -53,6 +53,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.DIVISION:
         this.model.setDivisionSign();
+        this.view.setCalculatorValue(this.model.currFirstValue);
         break;
       case Model.BTN_TYPE.SEVEN:
         this.model.addNumberToValue("7");
@@ -80,6 +81,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.MULT:
         this.model.setMultSign();
+        this.view.setCalculatorValue(this.model.currFirstValue);
         break;
       case Model.BTN_TYPE.FOUR:
         this.model.addNumberToValue("4");
@@ -107,6 +109,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.MINUS:
         this.model.setMinusSign();
+        this.view.setCalculatorValue(this.model.currFirstValue);
         break;
       case Model.BTN_TYPE.ONE:
         this.model.addNumberToValue("1");
@@ -134,6 +137,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.PLUS:
         this.model.setPlusSign();
+        this.view.setCalculatorValue(this.model.currFirstValue);
         break;
       case Model.BTN_TYPE.NULL:
         this.model.addNumberToValue("0");
