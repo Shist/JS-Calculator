@@ -34,6 +34,10 @@ class Controller {
       case Model.BTN_TYPE.CLEAN:
         this.model.resetValue();
         this.view.setCalculatorValue(this.model.currFirstValue);
+        if (this.view.getCleanBtnText() === "AC") {
+          this.view.cleanAllOperationBtns();
+        }
+        this.view.setCleanBtnText("AC");
         break;
       case Model.BTN_TYPE.SIGN_CHANGE:
         this.model.changeValueSign();
@@ -58,6 +62,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.SEVEN:
         this.model.addNumberToValue("7");
+        this.view.setCleanBtnText("C");
         this.view.setCalculatorValue(
           this.model.currOperation === Model.OPERATION_TYPE.NONE
             ? this.model.currFirstValue
@@ -67,6 +72,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.EIGHT:
         this.model.addNumberToValue("8");
+        this.view.setCleanBtnText("C");
         this.view.setCalculatorValue(
           this.model.currOperation === Model.OPERATION_TYPE.NONE
             ? this.model.currFirstValue
@@ -76,6 +82,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.NINE:
         this.model.addNumberToValue("9");
+        this.view.setCleanBtnText("C");
         this.view.setCalculatorValue(
           this.model.currOperation === Model.OPERATION_TYPE.NONE
             ? this.model.currFirstValue
@@ -90,6 +97,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.FOUR:
         this.model.addNumberToValue("4");
+        this.view.setCleanBtnText("C");
         this.view.setCalculatorValue(
           this.model.currOperation === Model.OPERATION_TYPE.NONE
             ? this.model.currFirstValue
@@ -99,6 +107,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.FIVE:
         this.model.addNumberToValue("5");
+        this.view.setCleanBtnText("C");
         this.view.setCalculatorValue(
           this.model.currOperation === Model.OPERATION_TYPE.NONE
             ? this.model.currFirstValue
@@ -108,6 +117,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.SIX:
         this.model.addNumberToValue("6");
+        this.view.setCleanBtnText("C");
         this.view.setCalculatorValue(
           this.model.currOperation === Model.OPERATION_TYPE.NONE
             ? this.model.currFirstValue
@@ -122,6 +132,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.ONE:
         this.model.addNumberToValue("1");
+        this.view.setCleanBtnText("C");
         this.view.setCalculatorValue(
           this.model.currOperation === Model.OPERATION_TYPE.NONE
             ? this.model.currFirstValue
@@ -131,6 +142,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.TWO:
         this.model.addNumberToValue("2");
+        this.view.setCleanBtnText("C");
         this.view.setCalculatorValue(
           this.model.currOperation === Model.OPERATION_TYPE.NONE
             ? this.model.currFirstValue
@@ -140,6 +152,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.THREE:
         this.model.addNumberToValue("3");
+        this.view.setCleanBtnText("C");
         this.view.setCalculatorValue(
           this.model.currOperation === Model.OPERATION_TYPE.NONE
             ? this.model.currFirstValue
@@ -154,6 +167,15 @@ class Controller {
         break;
       case Model.BTN_TYPE.NULL:
         this.model.addNumberToValue("0");
+        if (this.model.currOperation === Model.OPERATION_TYPE.NONE) {
+          if (this.model.currFirstValue !== "0") {
+            this.view.setCleanBtnText("C");
+          }
+        } else {
+          if (this.model.currSecondValue !== "0") {
+            this.view.setCleanBtnText("C");
+          }
+        }
         this.view.setCalculatorValue(
           this.model.currOperation === Model.OPERATION_TYPE.NONE
             ? this.model.currFirstValue
@@ -163,6 +185,7 @@ class Controller {
         break;
       case Model.BTN_TYPE.COMMA:
         this.model.addCommaToValue();
+        this.view.setCleanBtnText("C");
         this.view.setCalculatorValue(
           this.model.currOperation === Model.OPERATION_TYPE.NONE
             ? this.model.currFirstValue

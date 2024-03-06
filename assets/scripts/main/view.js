@@ -52,12 +52,26 @@ class View {
     return this;
   }
 
+  getCleanBtnText() {
+    return document.querySelector(`.${View.CLASS.CALCULATOR.CLEAN}`)
+      .textContent;
+  }
+
+  setCleanBtnText(newText) {
+    document.querySelector(`.${View.CLASS.CALCULATOR.CLEAN}`).textContent =
+      newText;
+
+    return this;
+  }
+
   cleanAllOperationBtns() {
     document
       .querySelectorAll(`.${View.CLASS.CALCULATOR.BASIC_BTN}`)
       .forEach((btn) =>
         btn.classList.remove(View.CLASS.CALCULATOR.ACTIVE_BASIC_BTN)
       );
+
+    return this;
   }
 
   makeOperationBtnActive(btnClass) {
@@ -66,6 +80,8 @@ class View {
     document
       .querySelector(`.${btnClass}`)
       .classList.add(View.CLASS.CALCULATOR.ACTIVE_BASIC_BTN);
+
+    return this;
   }
 }
 
