@@ -24,8 +24,7 @@ class Model {
     CALC: "calc",
   };
 
-  static NUM_TYPE = {
-    NONE: "none",
+  static CURR_NUM_TYPE = {
     FIRST: "first",
     SECOND: "second",
     THIRD: "third",
@@ -43,118 +42,157 @@ class Model {
     this.resetAllValues();
   }
 
-  resetFirstNum() {
+  cleanFirstNum() {
     this.firstNum = "0";
   }
 
-  resetSecondNum() {
+  cleanSecondNum() {
     this.secondNum = "0";
   }
 
-  resetThirdNum() {
+  cleanThirdNum() {
     this.thirdNum = "0";
   }
 
   resetAllValues() {
-    this.currNum = Model.NUM_TYPE.FIRST;
+    this.currNum = Model.CURR_NUM_TYPE.FIRST;
     this.firstNum = "0";
-    this.firstOp = Model.NOT_OP_TYPE.NONE;
-    this.secondNum = "0";
+    this.firstOp = Model.OP_TYPE.NONE;
+    this.secondNum = "";
     this.secondOp = Model.OP_TYPE.NONE;
-    this.thirdNum = "0";
+    this.thirdNum = "";
   }
 
   setPlusSign() {
     switch (this.currNum) {
-      case Model.NUM_TYPE.FIRST:
-        this.currNum = Model.NUM_TYPE.SECOND;
-        this.secondNum = this.firstNum;
+      case Model.CURR_NUM_TYPE.FIRST:
+        this.currNum = Model.CURR_NUM_TYPE.SECOND;
+        this.firstOp = Model.OP_TYPE.PLUS;
         break;
-      case Model.NUM_TYPE.SECOND:
-        this.calculateResult();
+      case Model.CURR_NUM_TYPE.SECOND:
+        if (this.secondNum) {
+          this.calculateResult();
+        } else {
+          this.firstOp = Model.OP_TYPE.PLUS;
+        }
         break;
-      case Model.NUM_TYPE.THIRD:
+      case Model.CURR_NUM_TYPE.THIRD:
         this.calculateResult();
         break;
     }
-    this.notPriorOp = Model.NOT_PRIOR_OP_TYPE.PLUS;
   }
 
   setMinusSign() {
     switch (this.currNum) {
-      case Model.NUM_TYPE.FIRST:
-        this.currNum = Model.NUM_TYPE.SECOND;
-        this.secondNum = this.firstNum;
+      case Model.CURR_NUM_TYPE.FIRST:
+        this.currNum = Model.CURR_NUM_TYPE.SECOND;
+        this.firstOp = Model.OP_TYPE.MINUS;
         break;
-      case Model.NUM_TYPE.SECOND:
-        this.calculateResult();
+      case Model.CURR_NUM_TYPE.SECOND:
+        if (this.secondNum) {
+          this.calculateResult();
+        } else {
+          this.firstOp = Model.OP_TYPE.MINUS;
+        }
         break;
-      case Model.NUM_TYPE.THIRD:
+      case Model.CURR_NUM_TYPE.THIRD:
         this.calculateResult();
         break;
     }
-    this.notPriorOp = Model.NOT_PRIOR_OP_TYPE.MINUS;
   }
 
   setMultSign() {
     switch (this.currNum) {
-      case Model.NUM_TYPE.FIRST:
-        this.currNum = Model.NUM_TYPE.SECOND;
-        this.secondNum = this.firstNum;
+      case Model.CURR_NUM_TYPE.FIRST:
+        this.currNum = Model.CURR_NUM_TYPE.SECOND;
+        this.firstOp = Model.OP_TYPE.MULT;
         break;
-      case Model.NUM_TYPE.SECOND:
-        if (this.priorOp === Model.PRIOR_OP_TYPE.NONE) {
-          this.currNum = Model.NUM_TYPE.THIRD;
+      case Model.CURR_NUM_TYPE.SECOND:
+        if (this.secondNum) {
+          if (
+            this.firstOp === Model.OP_TYPE.PLUS ||
+            this.firstOp === Model.OP_TYPE.MINUS
+          ) {
+            this.currNum = Model.CURR_NUM_TYPE.THIRD;
+            this.secondOp = Model.OP_TYPE.MULT;
+          } else {
+            this.calculateResult();
+          }
         } else {
-          this.calculateResult();
+          this.firstOp = Model.OP_TYPE.MULT;
         }
         break;
-      case Model.NUM_TYPE.THIRD:
-        this.calculateResult();
+      case Model.CURR_NUM_TYPE.THIRD:
+        if (this.thirdNum) {
+          this.calculateResult();
+        } else {
+          this.secondOp = Model.OP_TYPE.MULT;
+        }
         break;
     }
-    this.priorOp = Model.PRIOR_OP_TYPE.MULT;
   }
 
   setDivisionSign() {
     switch (this.currNum) {
-      case Model.NUM_TYPE.FIRST:
-        this.currNum = Model.NUM_TYPE.SECOND;
-        this.secondNum = this.firstNum;
+      case Model.CURR_NUM_TYPE.FIRST:
+        this.currNum = Model.CURR_NUM_TYPE.SECOND;
+        this.firstOp = Model.OP_TYPE.DIVISION;
         break;
-      case Model.NUM_TYPE.SECOND:
-        if (this.priorOp === Model.PRIOR_OP_TYPE.NONE) {
-          this.currNum = Model.NUM_TYPE.THIRD;
+      case Model.CURR_NUM_TYPE.SECOND:
+        if (this.secondNum) {
+          if (
+            this.firstOp === Model.OP_TYPE.PLUS ||
+            this.firstOp === Model.OP_TYPE.MINUS
+          ) {
+            this.currNum = Model.CURR_NUM_TYPE.THIRD;
+            this.secondOp = Model.OP_TYPE.DIVISION;
+          } else {
+            this.calculateResult();
+          }
         } else {
-          this.calculateResult();
+          this.firstOp = Model.OP_TYPE.DIVISION;
         }
         break;
-      case Model.NUM_TYPE.THIRD:
-        this.calculateResult();
+      case Model.CURR_NUM_TYPE.THIRD:
+        if (this.thirdNum) {
+          this.calculateResult();
+        } else {
+          this.secondOp = Model.OP_TYPE.DIVISION;
+        }
         break;
     }
-    this.priorOp = Model.PRIOR_OP_TYPE.DIVISION;
   }
 
   getValuePercent() {
     switch (this.currNum) {
-      case Model.NUM_TYPE.FIRST:
+      case Model.CURR_NUM_TYPE.FIRST:
         this.firstNum = (Number(this.firstNum) / 100).toString();
         break;
-      case Model.NUM_TYPE.SECOND:
-        if (this.secondNum !== "0") {
-          this.secondNum = (
-            (Number(this.firstNum) * Number(this.secondNum)) /
-            100
-          ).toString();
+      case Model.CURR_NUM_TYPE.SECOND:
+        if (
+          this.firstOp === Model.OP_TYPE.PLUS ||
+          this.firstOp === Model.OP_TYPE.MINUS
+        ) {
+          if (this.secondNum) {
+            this.secondNum = (
+              (Number(this.firstNum) * Number(this.secondNum)) /
+              100
+            ).toString();
+          } else {
+            this.secondNum = (
+              (Number(this.firstNum) * Number(this.firstNum)) /
+              100
+            ).toString();
+          }
         } else {
-          this.secondNum = (
-            (Number(this.firstNum) * Number(this.firstNum)) /
-            100
-          ).toString();
+          if (this.secondNum) {
+            this.secondNum = (Number(this.secondNum) / 100).toString();
+          } else {
+            this.secondNum = (Number(this.firstNum) / 100).toString();
+          }
         }
         break;
-      case Model.NUM_TYPE.THIRD:
+      case Model.CURR_NUM_TYPE.THIRD:
         this.thirdNum = (Number(this.thirdNum) / 100).toString();
         break;
     }
@@ -162,19 +200,19 @@ class Model {
 
   changeValueSign() {
     switch (this.currNum) {
-      case Model.NUM_TYPE.FIRST:
+      case Model.CURR_NUM_TYPE.FIRST:
         this.firstNum =
           this.firstNum[0] === "-"
             ? this.firstNum.slice(1)
             : "-" + this.firstNum;
         break;
-      case Model.NUM_TYPE.SECOND:
+      case Model.CURR_NUM_TYPE.SECOND:
         this.secondNum =
           this.secondNum[0] === "-"
             ? this.secondNum.slice(1)
             : "-" + this.secondNum;
         break;
-      case Model.NUM_TYPE.THIRD:
+      case Model.CURR_NUM_TYPE.THIRD:
         this.thirdNum =
           this.thirdNum[0] === "-"
             ? this.thirdNum.slice(1)
@@ -186,11 +224,7 @@ class Model {
   addNumberToValue(numStr) {
     let digitsAmount = null;
     switch (this.currNum) {
-      case Model.NUM_TYPE.NONE:
-        this.currNum = Model.NUM_TYPE.FIRST;
-        this.firstNum = numStr;
-        break;
-      case Model.NUM_TYPE.FIRST:
+      case Model.CURR_NUM_TYPE.FIRST:
         digitsAmount = this.firstNum.replace(/[,|-]/g, "").length;
         if (digitsAmount < 9) {
           if (
@@ -203,7 +237,7 @@ class Model {
           }
         }
         break;
-      case Model.NUM_TYPE.SECOND:
+      case Model.CURR_NUM_TYPE.SECOND:
         digitsAmount = this.secondNum.replace(/[,|-]/g, "").length;
         if (digitsAmount < 9) {
           if (
@@ -216,7 +250,7 @@ class Model {
           }
         }
         break;
-      case Model.NUM_TYPE.THIRD:
+      case Model.CURR_NUM_TYPE.THIRD:
         digitsAmount = this.thirdNum.replace(/[,|-]/g, "").length;
         if (digitsAmount < 9) {
           if (
@@ -233,19 +267,23 @@ class Model {
   }
 
   addCommaToValue() {
+    let digitsAmount = null;
     switch (this.currNum) {
-      case Model.NUM_TYPE.FIRST:
-        if (!this.firstNum.includes(".") && this.firstNum.length < 9) {
+      case Model.CURR_NUM_TYPE.FIRST:
+        digitsAmount = this.firstNum.replace(/[,|-]/g, "").length;
+        if (!this.firstNum.includes(".") && digitsAmount < 9) {
           this.firstNum += ".";
         }
         break;
-      case Model.NUM_TYPE.SECOND:
-        if (!this.secondNum.includes(".") && this.secondNum.length < 9) {
+      case Model.CURR_NUM_TYPE.SECOND:
+        digitsAmount = this.secondNum.replace(/[,|-]/g, "").length;
+        if (!this.secondNum.includes(".") && digitsAmount < 9) {
           this.secondNum += ".";
         }
         break;
-      case Model.NUM_TYPE.THIRD:
-        if (!this.thirdNum.includes(".") && this.thirdNum.length < 9) {
+      case Model.CURR_NUM_TYPE.THIRD:
+        digitsAmount = this.thirdNum.replace(/[,|-]/g, "").length;
+        if (!this.thirdNum.includes(".") && digitsAmount < 9) {
           this.thirdNum += ".";
         }
         break;
@@ -253,57 +291,41 @@ class Model {
   }
 
   calculateResult() {
-    switch (this.priorOp) {
-      case Model.PRIOR_OP_TYPE.NONE:
-        switch (this.notPriorOp) {
-          case Model.NOT_PRIOR_OP_TYPE.PLUS:
-            this.firstNum = (
-              Number(this.firstNum) + Number(this.secondNum)
-            ).toString();
-            break;
-          case Model.NOT_PRIOR_OP_TYPE.MINUS:
-            this.firstNum = (
-              Number(this.firstNum) - Number(this.secondNum)
-            ).toString();
-            break;
-        }
-        break;
-      case Model.PRIOR_OP_TYPE.MULT:
+    switch (this.secondOp) {
+      case Model.OP_TYPE.MULT:
         this.secondNum = (
           Number(this.secondNum) * Number(this.thirdNum)
         ).toString();
-        switch (this.notPriorOp) {
-          case Model.NOT_PRIOR_OP_TYPE.PLUS:
-            this.firstNum = (
-              Number(this.firstNum) + Number(this.secondNum)
-            ).toString();
-            break;
-          case Model.NOT_PRIOR_OP_TYPE.MINUS:
-            this.firstNum = (
-              Number(this.firstNum) - Number(this.secondNum)
-            ).toString();
-            break;
-        }
         break;
-      case Model.PRIOR_OP_TYPE.DIVISION:
+      case Model.OP_TYPE.DIVISION:
         this.secondNum = (
           Number(this.secondNum) / Number(this.thirdNum)
         ).toString();
-        switch (this.notPriorOp) {
-          case Model.NOT_PRIOR_OP_TYPE.PLUS:
-            this.firstNum = (
-              Number(this.firstNum) + Number(this.secondNum)
-            ).toString();
-            break;
-          case Model.NOT_PRIOR_OP_TYPE.MINUS:
-            this.firstNum = (
-              Number(this.firstNum) - Number(this.secondNum)
-            ).toString();
-            break;
-        }
         break;
     }
-    this.currNum = Model.NUM_TYPE.NONE;
+
+    switch (this.firstOp) {
+      case Model.OP_TYPE.PLUS:
+        this.firstNum = (
+          Number(this.firstNum) + Number(this.secondNum)
+        ).toString();
+        break;
+      case Model.OP_TYPE.MINUS:
+        this.firstNum = (
+          Number(this.firstNum) - Number(this.secondNum)
+        ).toString();
+        break;
+      case Model.OP_TYPE.MULT:
+        this.firstNum = (
+          Number(this.firstNum) * Number(this.secondNum)
+        ).toString();
+        break;
+      case Model.OP_TYPE.DIVISION:
+        this.firstNum = (
+          Number(this.firstNum) / Number(this.secondNum)
+        ).toString();
+        break;
+    }
   }
 }
 

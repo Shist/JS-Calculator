@@ -91,29 +91,74 @@ class Controller {
         break;
     }
 
-    console.log(`FirstNum = ${this.model.firstNum}`);
-    console.log(`SecondNum = ${this.model.secondNum}`);
-    console.log(`ThirdNum = ${this.model.thirdNum}`);
+    console.log("▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉");
+    console.log(`firstNum = ${this.model.firstNum}`);
+    console.log(`firstOp = ${this.model.firstOp}`);
+    console.log(`secondNum = ${this.model.secondNum}`);
+    console.log(`secondOp = ${this.model.secondOp}`);
+    console.log(`thirdNum = ${this.model.thirdNum}`);
     console.log(`currNum = ${this.model.currNum}`);
+  }
+
+  _showCurrentNum() {
+    switch (this.model.currNum) {
+      case Model.CURR_NUM_TYPE.FIRST:
+        this.view.setCalculatorValue(this.model.firstNum);
+        break;
+      case Model.CURR_NUM_TYPE.SECOND:
+        this.view.setCalculatorValue(this.model.secondNum);
+        break;
+      case Model.CURR_NUM_TYPE.THIRD:
+        this.view.setCalculatorValue(this.model.thirdNum);
+        break;
+    }
+  }
+
+  _showCurrentOperation() {
+    if (this.model.secondOp !== Model.OP_TYPE.NONE) {
+      switch (this.model.secondOp) {
+        case Model.OP_TYPE.MULT:
+          this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MULT);
+          break;
+        case Model.OP_TYPE.DIVISION:
+          this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.DIVISION);
+          break;
+      }
+    } else if (this.model.firstOp !== Model.OP_TYPE.NONE) {
+      switch (this.model.firstOp) {
+        case Model.OP_TYPE.PLUS:
+          this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.PLUS);
+          break;
+        case Model.OP_TYPE.MINUS:
+          this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MINUS);
+          break;
+        case Model.OP_TYPE.MULT:
+          this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MULT);
+          break;
+        case Model.OP_TYPE.DIVISION:
+          this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.DIVISION);
+          break;
+      }
+    }
   }
 
   _cleanBtnClicked() {
     if (this.cleanBtnState === "C") {
       switch (this.model.currNum) {
-        case Model.NUM_TYPE.FIRST:
-          this.model.resetFirstNum();
+        case Model.CURR_NUM_TYPE.FIRST:
+          this.model.cleanFirstNum();
 
           this.view.setCalculatorValue(this.model.firstNum);
 
           break;
-        case Model.NUM_TYPE.SECOND:
-          this.model.resetSecondNum();
+        case Model.CURR_NUM_TYPE.SECOND:
+          this.model.cleanSecondNum();
 
           this.view.setCalculatorValue(this.model.secondNum);
 
           break;
-        case Model.NUM_TYPE.THIRD:
-          this.model.resetThirdNum();
+        case Model.CURR_NUM_TYPE.THIRD:
+          this.model.cleanThirdNum();
 
           this.view.setCalculatorValue(this.model.thirdNum);
 
@@ -121,6 +166,7 @@ class Controller {
       }
       this.cleanBtnState = "AC";
       this.view.setCleanBtnState(this.cleanBtnState);
+      this._showCurrentOperation();
     } else {
       this.model.resetAllValues();
 
@@ -131,25 +177,21 @@ class Controller {
 
   _plusBtnClicked() {
     this.model.setPlusSign();
-    this._showCurrentNum();
     this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.PLUS);
   }
 
   _minusBtnClicked() {
     this.model.setMinusSign();
-    this._showCurrentNum();
     this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MINUS);
   }
 
   _multBtnClicked() {
     this.model.setMultSign();
-    this._showCurrentNum();
     this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MULT);
   }
 
   _divisionBtnClicked() {
     this.model.setDivisionSign();
-    this._showCurrentNum();
     this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.DIVISION);
   }
 
@@ -174,19 +216,19 @@ class Controller {
   _nullBtnClicked() {
     this.model.addNumberToValue("0");
     switch (this.model.currNum) {
-      case Model.NUM_TYPE.FIRST:
+      case Model.CURR_NUM_TYPE.FIRST:
         if (this.model.firstNum !== "0") {
           this.cleanBtnState = "C";
           this.view.setCleanBtnState(this.cleanBtnState);
         }
         break;
-      case Model.NUM_TYPE.SECOND:
+      case Model.CURR_NUM_TYPE.SECOND:
         if (this.model.secondNum !== "0") {
           this.cleanBtnState = "C";
           this.view.setCleanBtnState(this.cleanBtnState);
         }
         break;
-      case Model.NUM_TYPE.THIRD:
+      case Model.CURR_NUM_TYPE.THIRD:
         if (this.model.thirdNum !== "0") {
           this.cleanBtnState = "C";
           this.view.setCleanBtnState(this.cleanBtnState);
@@ -209,20 +251,6 @@ class Controller {
     this.model.calculateResult();
     this.view.setCalculatorValue(this.model.firstNum);
     this.view.cleanAllOperationBtns();
-  }
-
-  _showCurrentNum() {
-    switch (this.model.currNum) {
-      case Model.NUM_TYPE.FIRST:
-        this.view.setCalculatorValue(this.model.firstNum);
-        break;
-      case Model.NUM_TYPE.SECOND:
-        this.view.setCalculatorValue(this.model.secondNum);
-        break;
-      case Model.NUM_TYPE.THIRD:
-        this.view.setCalculatorValue(this.model.thirdNum);
-        break;
-    }
   }
 }
 
