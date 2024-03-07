@@ -137,9 +137,15 @@ class Model {
         break;
       case Model.CURR_NUM_TYPE.THIRD:
         if (this.thirdNum) {
-          this.secondNum = (
-            Number(this.secondNum) * Number(this.thirdNum)
-          ).toString();
+          const secondNum = Number(this.secondNum);
+          const thirdNum = Number(this.thirdNum);
+          if (secondNum * thirdNum >= Number.MAX_SAFE_INTEGER) {
+            this.secondNum = "Infinity";
+          } else if (secondNum * thirdNum <= Number.MIN_SAFE_INTEGER) {
+            this.secondNum = "-Infinity";
+          } else {
+            this.secondNum = (secondNum * thirdNum).toString();
+          }
           this.thirdNum = "";
           this.currNum = Model.CURR_NUM_TYPE.THIRD;
           this.secondOp = Model.OP_TYPE.MULT;
@@ -202,15 +208,27 @@ class Model {
           this.firstOp === Model.OP_TYPE.MINUS
         ) {
           if (this.secondNum) {
-            this.secondNum = (
-              (Number(this.firstNum) * Number(this.secondNum)) /
-              100
-            ).toString();
+            const firstNum = Number(this.firstNum);
+            const secondNum = Number(this.secondNum);
+            if ((firstNum * secondNum) / 100 >= Number.MAX_SAFE_INTEGER) {
+              this.secondNum = "Infinity";
+            } else if (
+              (firstNum * secondNum) / 100 <=
+              Number.MIN_SAFE_INTEGER
+            ) {
+              this.secondNum = "-Infinity";
+            } else {
+              this.secondNum = ((firstNum * secondNum) / 100).toString();
+            }
           } else {
-            this.secondNum = (
-              (Number(this.firstNum) * Number(this.firstNum)) /
-              100
-            ).toString();
+            const firstNum = Number(this.firstNum);
+            if ((firstNum * firstNum) / 100 >= Number.MAX_SAFE_INTEGER) {
+              this.secondNum = "Infinity";
+            } else if ((firstNum * firstNum) / 100 <= Number.MIN_SAFE_INTEGER) {
+              this.secondNum = "-Infinity";
+            } else {
+              this.secondNum = ((firstNum * firstNum) / 100).toString();
+            }
           }
         } else {
           if (this.secondNum) {
@@ -245,7 +263,7 @@ class Model {
         break;
       case Model.CURR_NUM_TYPE.THIRD:
         if (!this.thirdNum) {
-          this.secondNum = "0";
+          this.thirdNum = "0";
         }
         this.thirdNum =
           this.thirdNum[0] === "-"
@@ -362,13 +380,24 @@ class Model {
     switch (this.secondOp) {
       case Model.OP_TYPE.MULT:
         if (this.thirdNum) {
-          this.secondNum = (
-            Number(this.secondNum) * Number(this.thirdNum)
-          ).toString();
+          const secondNum = Number(this.secondNum);
+          const thirdNum = Number(this.thirdNum);
+          if (secondNum * thirdNum >= Number.MAX_SAFE_INTEGER) {
+            this.secondNum = "Infinity";
+          } else if (secondNum * thirdNum <= Number.MIN_SAFE_INTEGER) {
+            this.secondNum = "-Infinity";
+          } else {
+            this.secondNum = (secondNum * thirdNum).toString();
+          }
         } else {
-          this.secondNum = (
-            Number(this.secondNum) * Number(this.secondNum)
-          ).toString();
+          const secondNum = Number(this.secondNum);
+          if (secondNum * secondNum >= Number.MAX_SAFE_INTEGER) {
+            this.secondNum = "Infinity";
+          } else if (secondNum * secondNum <= Number.MIN_SAFE_INTEGER) {
+            this.secondNum = "-Infinity";
+          } else {
+            this.secondNum = (secondNum * secondNum).toString();
+          }
         }
         break;
       case Model.OP_TYPE.DIVISION:
@@ -392,35 +421,60 @@ class Model {
         break;
       case Model.OP_TYPE.PLUS:
         if (this.secondNum) {
-          this.firstNum = (
-            Number(this.firstNum) + Number(this.secondNum)
-          ).toString();
+          const firstNum = Number(this.firstNum);
+          const secondNum = Number(this.secondNum);
+          if (firstNum + secondNum >= Number.MAX_SAFE_INTEGER) {
+            this.firstNum = "Infinity";
+          } else {
+            this.firstNum = (firstNum + secondNum).toString();
+          }
         } else {
-          this.firstNum = (
-            Number(this.firstNum) + Number(this.firstNum)
-          ).toString();
+          const firstNum = Number(this.firstNum);
+          if (firstNum + firstNum >= Number.MAX_SAFE_INTEGER) {
+            this.firstNum = "Infinity";
+          } else {
+            this.firstNum = (firstNum + firstNum).toString();
+          }
         }
         break;
       case Model.OP_TYPE.MINUS:
         if (this.secondNum) {
-          this.firstNum = (
-            Number(this.firstNum) - Number(this.secondNum)
-          ).toString();
+          const firstNum = Number(this.firstNum);
+          const secondNum = Number(this.secondNum);
+          if (firstNum - secondNum <= Number.MIN_SAFE_INTEGER) {
+            this.firstNum = "-Infinity";
+          } else {
+            this.firstNum = (firstNum - secondNum).toString();
+          }
         } else {
-          this.firstNum = (
-            Number(this.firstNum) - Number(this.firstNum)
-          ).toString();
+          const firstNum = Number(this.firstNum);
+          if (firstNum - firstNum <= Number.MIN_SAFE_INTEGER) {
+            this.firstNum = "-Infinity";
+          } else {
+            this.firstNum = (firstNum - firstNum).toString();
+          }
         }
         break;
       case Model.OP_TYPE.MULT:
         if (this.secondNum) {
-          this.firstNum = (
-            Number(this.firstNum) * Number(this.secondNum)
-          ).toString();
+          const firstNum = Number(this.firstNum);
+          const secondNum = Number(this.secondNum);
+          if (firstNum * secondNum >= Number.MAX_SAFE_INTEGER) {
+            this.firstNum = "Infinity";
+          } else if (firstNum * secondNum <= Number.MIN_SAFE_INTEGER) {
+            this.firstNum = "-Infinity";
+          } else {
+            this.firstNum = (firstNum * secondNum).toString();
+          }
         } else {
-          this.firstNum = (
-            Number(this.firstNum) * Number(this.firstNum)
-          ).toString();
+          const firstNum = Number(this.firstNum);
+          if (firstNum * firstNum >= Number.MAX_SAFE_INTEGER) {
+            this.firstNum = "Infinity";
+          } else if (firstNum * firstNum <= Number.MIN_SAFE_INTEGER) {
+            this.firstNum = "-Infinity";
+          } else {
+            this.firstNum = (firstNum * firstNum).toString();
+          }
         }
         break;
       case Model.OP_TYPE.DIVISION:
@@ -438,26 +492,34 @@ class Model {
   }
 
   _calculateWithLastOp() {
+    const firstNum = Number(this.firstNum);
+    const lastNum = Number(this.lastNum);
     switch (this.lastOp) {
       case Model.OP_TYPE.PLUS:
-        this.firstNum = (
-          Number(this.firstNum) + Number(this.lastNum)
-        ).toString();
+        if (firstNum + lastNum >= Number.MAX_SAFE_INTEGER) {
+          this.firstNum = "Infinity";
+        } else {
+          this.firstNum = (firstNum + lastNum).toString();
+        }
         break;
       case Model.OP_TYPE.MINUS:
-        this.firstNum = (
-          Number(this.firstNum) - Number(this.lastNum)
-        ).toString();
+        if (firstNum - lastNum <= Number.MIN_SAFE_INTEGER) {
+          this.firstNum = "-Infinity";
+        } else {
+          this.firstNum = (firstNum - lastNum).toString();
+        }
         break;
       case Model.OP_TYPE.MULT:
-        this.firstNum = (
-          Number(this.firstNum) * Number(this.lastNum)
-        ).toString();
+        if (firstNum * lastNum >= Number.MAX_SAFE_INTEGER) {
+          this.firstNum = "Infinity";
+        } else if (firstNum * lastNum <= Number.MIN_SAFE_INTEGER) {
+          this.firstNum = "-Infinity";
+        } else {
+          this.firstNum = (firstNum * lastNum).toString();
+        }
         break;
       case Model.OP_TYPE.DIVISION:
-        this.firstNum = (
-          Number(this.firstNum) / Number(this.lastNum)
-        ).toString();
+        this.firstNum = (firstNum / lastNum).toString();
         break;
     }
   }

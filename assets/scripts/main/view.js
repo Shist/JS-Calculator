@@ -79,10 +79,8 @@ class View {
   }
 
   _formatNumForOutput(numStr) {
-    if (numStr === "Infinity") {
-      numStr = "Error";
-    } else if (Number(numStr) > 999999999) {
-      //a = 8;
+    if (numStr === "Infinity" || numStr === "-Infinity") {
+      return "Error";
     }
 
     return this._addSpacesForIntPart(numStr.replace(/\./g, ","));
