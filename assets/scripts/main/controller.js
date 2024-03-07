@@ -71,6 +71,7 @@ class Controller {
           this.model.resetThirdValue();
           this.model.resetNotPriorOperation();
           this.model.resetPriorOperation();
+          this.view.cleanAllOperationBtns();
           this.view.setCalculatorValue(this.model.firstNum);
         }
         break;
@@ -203,6 +204,11 @@ class Controller {
         this.view.cleanAllOperationBtns();
         break;
     }
+
+    console.log(`FirstNum = ${this.model.firstNum}`);
+    console.log(`SecondNum = ${this.model.secondNum}`);
+    console.log(`ThirdNum = ${this.model.thirdNum}`);
+    console.log(`currNum = ${this.model.currNum}`);
   }
 }
 

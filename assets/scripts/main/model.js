@@ -276,11 +276,6 @@ class Model {
   }
 
   calculateResult() {
-    console.log("Before calculation:");
-    console.log(`FirstNum = ${this.firstNum}`);
-    console.log(`SecondNum = ${this.secondNum}`);
-    console.log(`ThirdNum = ${this.thirdNum}`);
-    console.log(`currNum = ${this.currNum}`);
     switch (this.priorOp) {
       case Model.PRIOR_OP_TYPE.NONE:
         switch (this.notPriorOp) {
