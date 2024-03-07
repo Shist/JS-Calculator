@@ -4,21 +4,21 @@
 class Model {
   static BTN_TYPE = {
     CLEAN: "clean",
-    SIGN_CHANGE: "sign-change",
-    PERCENT: "percent",
-    DIVISION: "division",
-    SEVEN: "seven",
-    EIGHT: "eight",
-    NINE: "nine",
-    MULT: "mult",
-    FOUR: "four",
-    FIVE: "five",
-    SIX: "six",
+    PLUS: "plus",
     MINUS: "minus",
+    MULT: "mult",
+    DIVISION: "division",
+    PERCENT: "percent",
+    SIGN_CHANGE: "sign-change",
     ONE: "one",
     TWO: "two",
     THREE: "three",
-    PLUS: "plus",
+    FOUR: "four",
+    FIVE: "five",
+    SIX: "six",
+    SEVEN: "seven",
+    EIGHT: "eight",
+    NINE: "nine",
     NULL: "null",
     COMMA: "comma",
     CALC: "calc",
@@ -127,7 +127,6 @@ class Model {
     switch (this.currNum) {
       case Model.NUM_TYPE.FIRST:
         this.currNum = Model.NUM_TYPE.SECOND;
-
         this.secondNum = this.firstNum;
         break;
       case Model.NUM_TYPE.SECOND:
@@ -141,7 +140,6 @@ class Model {
         this.calculateResult();
         break;
     }
-
     this.priorOp = Model.PRIOR_OP_TYPE.DIVISION;
   }
 
@@ -149,7 +147,6 @@ class Model {
     switch (this.currNum) {
       case Model.NUM_TYPE.FIRST:
         this.currNum = Model.NUM_TYPE.SECOND;
-
         this.secondNum = this.firstNum;
         break;
       case Model.NUM_TYPE.SECOND:
@@ -163,7 +160,6 @@ class Model {
         this.calculateResult();
         break;
     }
-
     this.priorOp = Model.PRIOR_OP_TYPE.MULT;
   }
 
@@ -171,7 +167,6 @@ class Model {
     switch (this.currNum) {
       case Model.NUM_TYPE.FIRST:
         this.currNum = Model.NUM_TYPE.SECOND;
-
         this.secondNum = this.firstNum;
         break;
       case Model.NUM_TYPE.SECOND:
@@ -181,7 +176,6 @@ class Model {
         this.calculateResult();
         break;
     }
-
     this.notPriorOp = Model.NOT_PRIOR_OP_TYPE.MINUS;
   }
 
@@ -189,7 +183,6 @@ class Model {
     switch (this.currNum) {
       case Model.NUM_TYPE.FIRST:
         this.currNum = Model.NUM_TYPE.SECOND;
-
         this.secondNum = this.firstNum;
         break;
       case Model.NUM_TYPE.SECOND:
@@ -199,7 +192,6 @@ class Model {
         this.calculateResult();
         break;
     }
-
     this.notPriorOp = Model.NOT_PRIOR_OP_TYPE.PLUS;
   }
 
@@ -212,7 +204,6 @@ class Model {
         break;
       case Model.NUM_TYPE.FIRST:
         digitsAmount = this.firstNum.replace(/[,|-]/g, "").length;
-
         if (digitsAmount < 9) {
           if (
             digitsAmount === 1 &&
@@ -226,7 +217,6 @@ class Model {
         break;
       case Model.NUM_TYPE.SECOND:
         digitsAmount = this.secondNum.replace(/[,|-]/g, "").length;
-
         if (digitsAmount < 9) {
           if (
             digitsAmount === 1 &&
@@ -240,7 +230,6 @@ class Model {
         break;
       case Model.NUM_TYPE.THIRD:
         digitsAmount = this.thirdNum.replace(/[,|-]/g, "").length;
-
         if (digitsAmount < 9) {
           if (
             digitsAmount === 1 &&
@@ -283,13 +272,11 @@ class Model {
             this.firstNum = (
               Number(this.firstNum) + Number(this.secondNum)
             ).toString();
-
             break;
           case Model.NOT_PRIOR_OP_TYPE.MINUS:
             this.firstNum = (
               Number(this.firstNum) - Number(this.secondNum)
             ).toString();
-
             break;
         }
         break;
@@ -297,19 +284,16 @@ class Model {
         this.secondNum = (
           Number(this.secondNum) * Number(this.thirdNum)
         ).toString();
-
         switch (this.notPriorOp) {
           case Model.NOT_PRIOR_OP_TYPE.PLUS:
             this.firstNum = (
               Number(this.firstNum) + Number(this.secondNum)
             ).toString();
-
             break;
           case Model.NOT_PRIOR_OP_TYPE.MINUS:
             this.firstNum = (
               Number(this.firstNum) - Number(this.secondNum)
             ).toString();
-
             break;
         }
         break;
@@ -317,19 +301,16 @@ class Model {
         this.secondNum = (
           Number(this.secondNum) / Number(this.thirdNum)
         ).toString();
-
         switch (this.notPriorOp) {
           case Model.NOT_PRIOR_OP_TYPE.PLUS:
             this.firstNum = (
               Number(this.firstNum) + Number(this.secondNum)
             ).toString();
-
             break;
           case Model.NOT_PRIOR_OP_TYPE.MINUS:
             this.firstNum = (
               Number(this.firstNum) - Number(this.secondNum)
             ).toString();
-
             break;
         }
         break;
