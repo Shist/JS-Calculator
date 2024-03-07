@@ -52,12 +52,7 @@ class View {
     return this;
   }
 
-  getCleanBtnText() {
-    return document.querySelector(`.${View.CLASS.CALCULATOR.CLEAN}`)
-      .textContent;
-  }
-
-  setCleanBtnText(newText) {
+  setCleanBtnState(newText) {
     document.querySelector(`.${View.CLASS.CALCULATOR.CLEAN}`).textContent =
       newText;
 
