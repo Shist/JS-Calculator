@@ -48,12 +48,14 @@ class View {
   setCalculatorValue(newValue) {
     document.querySelector(`.${View.CLASS.CALCULATOR.VALUE}`).textContent =
       newValue.replace(/\./g, ",");
+
     return this;
   }
 
   setCleanBtnState(newText) {
     document.querySelector(`.${View.CLASS.CALCULATOR.CLEAN}`).textContent =
       newText;
+
     return this;
   }
 
@@ -63,6 +65,7 @@ class View {
       .forEach((btn) =>
         btn.classList.remove(View.CLASS.CALCULATOR.ACTIVE_BASIC_BTN)
       );
+
     return this;
   }
 
@@ -71,6 +74,7 @@ class View {
     document
       .querySelector(`.${btnClass}`)
       .classList.add(View.CLASS.CALCULATOR.ACTIVE_BASIC_BTN);
+
     return this;
   }
 }

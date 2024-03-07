@@ -31,72 +31,109 @@ class Model {
     THIRD: "third",
   };
 
-  static PRIOR_OP_TYPE = {
+  static OP_TYPE = {
     NONE: "none",
-    DIVISION: "division",
-    MULT: "mult",
-  };
-
-  static NOT_PRIOR_OP_TYPE = {
-    NONE: "none",
-    MINUS: "minus",
     PLUS: "plus",
+    MINUS: "minus",
+    MULT: "mult",
+    DIVISION: "division",
   };
 
   constructor() {
-    this.resetCurrNum();
-    this.resetFirstValue();
-    this.resetSecondValue();
-    this.resetThirdValue();
-    this.resetNotPriorOperation();
-    this.resetPriorOperation();
+    this.resetAllValues();
   }
 
-  resetCurrNum() {
-    this.currNum = Model.NUM_TYPE.FIRST;
-  }
-
-  resetFirstValue() {
+  resetFirstNum() {
     this.firstNum = "0";
   }
 
-  resetSecondValue() {
+  resetSecondNum() {
     this.secondNum = "0";
   }
 
-  resetThirdValue() {
+  resetThirdNum() {
     this.thirdNum = "0";
   }
 
-  resetNotPriorOperation() {
-    this.notPriorOp = Model.NOT_PRIOR_OP_TYPE.NONE;
+  resetAllValues() {
+    this.currNum = Model.NUM_TYPE.FIRST;
+    this.firstNum = "0";
+    this.firstOp = Model.NOT_OP_TYPE.NONE;
+    this.secondNum = "0";
+    this.secondOp = Model.OP_TYPE.NONE;
+    this.thirdNum = "0";
   }
 
-  resetPriorOperation() {
-    this.priorOp = Model.PRIOR_OP_TYPE.NONE;
-  }
-
-  changeValueSign() {
+  setPlusSign() {
     switch (this.currNum) {
       case Model.NUM_TYPE.FIRST:
-        this.firstNum =
-          this.firstNum[0] === "-"
-            ? this.firstNum.slice(1)
-            : "-" + this.firstNum;
+        this.currNum = Model.NUM_TYPE.SECOND;
+        this.secondNum = this.firstNum;
         break;
       case Model.NUM_TYPE.SECOND:
-        this.secondNum =
-          this.secondNum[0] === "-"
-            ? this.secondNum.slice(1)
-            : "-" + this.secondNum;
+        this.calculateResult();
         break;
       case Model.NUM_TYPE.THIRD:
-        this.thirdNum =
-          this.thirdNum[0] === "-"
-            ? this.thirdNum.slice(1)
-            : "-" + this.thirdNum;
+        this.calculateResult();
         break;
     }
+    this.notPriorOp = Model.NOT_PRIOR_OP_TYPE.PLUS;
+  }
+
+  setMinusSign() {
+    switch (this.currNum) {
+      case Model.NUM_TYPE.FIRST:
+        this.currNum = Model.NUM_TYPE.SECOND;
+        this.secondNum = this.firstNum;
+        break;
+      case Model.NUM_TYPE.SECOND:
+        this.calculateResult();
+        break;
+      case Model.NUM_TYPE.THIRD:
+        this.calculateResult();
+        break;
+    }
+    this.notPriorOp = Model.NOT_PRIOR_OP_TYPE.MINUS;
+  }
+
+  setMultSign() {
+    switch (this.currNum) {
+      case Model.NUM_TYPE.FIRST:
+        this.currNum = Model.NUM_TYPE.SECOND;
+        this.secondNum = this.firstNum;
+        break;
+      case Model.NUM_TYPE.SECOND:
+        if (this.priorOp === Model.PRIOR_OP_TYPE.NONE) {
+          this.currNum = Model.NUM_TYPE.THIRD;
+        } else {
+          this.calculateResult();
+        }
+        break;
+      case Model.NUM_TYPE.THIRD:
+        this.calculateResult();
+        break;
+    }
+    this.priorOp = Model.PRIOR_OP_TYPE.MULT;
+  }
+
+  setDivisionSign() {
+    switch (this.currNum) {
+      case Model.NUM_TYPE.FIRST:
+        this.currNum = Model.NUM_TYPE.SECOND;
+        this.secondNum = this.firstNum;
+        break;
+      case Model.NUM_TYPE.SECOND:
+        if (this.priorOp === Model.PRIOR_OP_TYPE.NONE) {
+          this.currNum = Model.NUM_TYPE.THIRD;
+        } else {
+          this.calculateResult();
+        }
+        break;
+      case Model.NUM_TYPE.THIRD:
+        this.calculateResult();
+        break;
+    }
+    this.priorOp = Model.PRIOR_OP_TYPE.DIVISION;
   }
 
   getValuePercent() {
@@ -123,76 +160,27 @@ class Model {
     }
   }
 
-  setDivisionSign() {
+  changeValueSign() {
     switch (this.currNum) {
       case Model.NUM_TYPE.FIRST:
-        this.currNum = Model.NUM_TYPE.SECOND;
-        this.secondNum = this.firstNum;
+        this.firstNum =
+          this.firstNum[0] === "-"
+            ? this.firstNum.slice(1)
+            : "-" + this.firstNum;
         break;
       case Model.NUM_TYPE.SECOND:
-        if (this.priorOp === Model.PRIOR_OP_TYPE.NONE) {
-          this.currNum = Model.NUM_TYPE.THIRD;
-        } else {
-          this.calculateResult();
-        }
+        this.secondNum =
+          this.secondNum[0] === "-"
+            ? this.secondNum.slice(1)
+            : "-" + this.secondNum;
         break;
       case Model.NUM_TYPE.THIRD:
-        this.calculateResult();
+        this.thirdNum =
+          this.thirdNum[0] === "-"
+            ? this.thirdNum.slice(1)
+            : "-" + this.thirdNum;
         break;
     }
-    this.priorOp = Model.PRIOR_OP_TYPE.DIVISION;
-  }
-
-  setMultSign() {
-    switch (this.currNum) {
-      case Model.NUM_TYPE.FIRST:
-        this.currNum = Model.NUM_TYPE.SECOND;
-        this.secondNum = this.firstNum;
-        break;
-      case Model.NUM_TYPE.SECOND:
-        if (this.priorOp === Model.PRIOR_OP_TYPE.NONE) {
-          this.currNum = Model.NUM_TYPE.THIRD;
-        } else {
-          this.calculateResult();
-        }
-        break;
-      case Model.NUM_TYPE.THIRD:
-        this.calculateResult();
-        break;
-    }
-    this.priorOp = Model.PRIOR_OP_TYPE.MULT;
-  }
-
-  setMinusSign() {
-    switch (this.currNum) {
-      case Model.NUM_TYPE.FIRST:
-        this.currNum = Model.NUM_TYPE.SECOND;
-        this.secondNum = this.firstNum;
-        break;
-      case Model.NUM_TYPE.SECOND:
-        this.calculateResult();
-        break;
-      case Model.NUM_TYPE.THIRD:
-        this.calculateResult();
-        break;
-    }
-    this.notPriorOp = Model.NOT_PRIOR_OP_TYPE.MINUS;
-  }
-
-  setPlusSign() {
-    switch (this.currNum) {
-      case Model.NUM_TYPE.FIRST:
-        this.currNum = Model.NUM_TYPE.SECOND;
-        this.secondNum = this.firstNum;
-        break;
-      case Model.NUM_TYPE.SECOND:
-        this.calculateResult();
-        break;
-      case Model.NUM_TYPE.THIRD:
-        this.calculateResult();
-        break;
-    }
-    this.notPriorOp = Model.NOT_PRIOR_OP_TYPE.PLUS;
   }
 
   addNumberToValue(numStr) {

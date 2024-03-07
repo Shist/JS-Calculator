@@ -101,60 +101,38 @@ class Controller {
     if (this.cleanBtnState === "C") {
       switch (this.model.currNum) {
         case Model.NUM_TYPE.FIRST:
-          this.model.resetFirstValue();
+          this.model.resetFirstNum();
+
           this.view.setCalculatorValue(this.model.firstNum);
+
           break;
         case Model.NUM_TYPE.SECOND:
-          this.model.resetSecondValue();
+          this.model.resetSecondNum();
+
           this.view.setCalculatorValue(this.model.secondNum);
+
           break;
         case Model.NUM_TYPE.THIRD:
-          this.model.resetThirdValue();
+          this.model.resetThirdNum();
+
           this.view.setCalculatorValue(this.model.thirdNum);
+
           break;
       }
       this.cleanBtnState = "AC";
       this.view.setCleanBtnState(this.cleanBtnState);
     } else {
-      this.model.resetCurrNum();
-      this.model.resetFirstValue();
-      this.model.resetSecondValue();
-      this.model.resetThirdValue();
-      this.model.resetNotPriorOperation();
-      this.model.resetPriorOperation();
+      this.model.resetAllValues();
+
       this.view.cleanAllOperationBtns();
       this.view.setCalculatorValue(this.model.firstNum);
     }
   }
 
-  _signChangeValueBtnClicked() {
-    this.model.changeValueSign();
+  _plusBtnClicked() {
+    this.model.setPlusSign();
     this._showCurrentNum();
-  }
-
-  _percentBtnClicked() {
-    this.model.getValuePercent();
-    this._showCurrentNum();
-  }
-
-  _divisionBtnClicked() {
-    this.model.setDivisionSign();
-    this._showCurrentNum();
-    this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.DIVISION);
-  }
-
-  _digitBtnClicked(numStr) {
-    this.model.addNumberToValue(numStr);
-    this.cleanBtnState = "C";
-    this.view.setCleanBtnState(this.cleanBtnState);
-    this._showCurrentNum();
-    this.view.cleanAllOperationBtns();
-  }
-
-  _multBtnClicked() {
-    this.model.setMultSign();
-    this._showCurrentNum();
-    this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MULT);
+    this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.PLUS);
   }
 
   _minusBtnClicked() {
@@ -163,10 +141,34 @@ class Controller {
     this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MINUS);
   }
 
-  _plusBtnClicked() {
-    this.model.setPlusSign();
+  _multBtnClicked() {
+    this.model.setMultSign();
     this._showCurrentNum();
-    this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.PLUS);
+    this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MULT);
+  }
+
+  _divisionBtnClicked() {
+    this.model.setDivisionSign();
+    this._showCurrentNum();
+    this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.DIVISION);
+  }
+
+  _percentBtnClicked() {
+    this.model.getValuePercent();
+    this._showCurrentNum();
+  }
+
+  _signChangeValueBtnClicked() {
+    this.model.changeValueSign();
+    this._showCurrentNum();
+  }
+
+  _digitBtnClicked(numStr) {
+    this.model.addNumberToValue(numStr);
+    this.cleanBtnState = "C";
+    this.view.setCleanBtnState(this.cleanBtnState);
+    this._showCurrentNum();
+    this.view.cleanAllOperationBtns();
   }
 
   _nullBtnClicked() {
