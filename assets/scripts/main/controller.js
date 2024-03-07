@@ -92,12 +92,14 @@ class Controller {
     }
 
     console.log("▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉");
+    console.log(`currNum = ${this.model.currNum}`);
     console.log(`firstNum = ${this.model.firstNum}`);
     console.log(`firstOp = ${this.model.firstOp}`);
     console.log(`secondNum = ${this.model.secondNum}`);
     console.log(`secondOp = ${this.model.secondOp}`);
     console.log(`thirdNum = ${this.model.thirdNum}`);
-    console.log(`currNum = ${this.model.currNum}`);
+    console.log(`lastOp = ${this.model.lastOp}`);
+    console.log(`lastNum = ${this.model.lastNum}`);
   }
 
   _showCurrentNum() {
@@ -176,22 +178,38 @@ class Controller {
   }
 
   _plusBtnClicked() {
-    this.model.setPlusSign();
+    const msg = this.model.setPlusSign();
+    if (msg === Model.FULL_CALC_DONE) {
+      this.view.setCalculatorValue(this.model.firstNum);
+    }
     this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.PLUS);
   }
 
   _minusBtnClicked() {
-    this.model.setMinusSign();
+    const msg = this.model.setMinusSign();
+    if (msg === Model.FULL_CALC_DONE) {
+      this.view.setCalculatorValue(this.model.firstNum);
+    }
     this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MINUS);
   }
 
   _multBtnClicked() {
-    this.model.setMultSign();
+    const msg = this.model.setMultSign();
+    if (msg === Model.FULL_CALC_DONE) {
+      this.view.setCalculatorValue(this.model.firstNum);
+    } else if (msg === Model.MULT_DIV_CALC_DONE) {
+      this.view.setCalculatorValue(this.model.secondNum);
+    }
     this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.MULT);
   }
 
   _divisionBtnClicked() {
-    this.model.setDivisionSign();
+    const msg = this.model.setDivisionSign();
+    if (msg === Model.FULL_CALC_DONE) {
+      this.view.setCalculatorValue(this.model.firstNum);
+    } else if (msg === Model.MULT_DIV_CALC_DONE) {
+      this.view.setCalculatorValue(this.model.secondNum);
+    }
     this.view.makeOperationBtnActive(View.CLASS.CALCULATOR.DIVISION);
   }
 

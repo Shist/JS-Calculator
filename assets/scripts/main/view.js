@@ -47,7 +47,7 @@ class View {
 
   setCalculatorValue(newValue) {
     document.querySelector(`.${View.CLASS.CALCULATOR.VALUE}`).textContent =
-      newValue.replace(/\./g, ",");
+      this._formatNumForOutput(newValue);
 
     return this;
   }
@@ -76,6 +76,28 @@ class View {
       .classList.add(View.CLASS.CALCULATOR.ACTIVE_BASIC_BTN);
 
     return this;
+  }
+
+  _formatNumForOutput(numStr) {
+    if (numStr === "Infinity") {
+      numStr = "Error";
+    } else if (Number(numStr) > 999999999) {
+      //a = 8;
+    }
+
+    return this._addSpacesForIntPart(numStr.replace(/\./g, ","));
+  }
+
+  _addSpacesForIntPart(numStr) {
+    if (numStr.includes(",")) {
+      const [integerPart, decimalPart] = numStr.split(",");
+      const formattedIntegerPart = parseInt(integerPart)
+        .toLocaleString()
+        .replace(/,/g, " ");
+      return `${formattedIntegerPart},${decimalPart}`;
+    } else {
+      return parseInt(numStr).toLocaleString().replace(/,/g, " ");
+    }
   }
 }
 

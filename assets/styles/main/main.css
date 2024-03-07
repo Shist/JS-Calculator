@@ -255,6 +255,9 @@
   padding: 10px 20px;
   font-family: "Roboto";
   font-size: 56px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   color: white;
   align-self: center;
   text-align: end;
