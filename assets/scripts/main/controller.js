@@ -12,7 +12,24 @@ class Controller {
   }
 
   init() {
+    this._setSwitchThemeBtnListener();
     this._setCalculatorBtnsListener();
+  }
+
+  _setSwitchThemeBtnListener() {
+    const switchInput = this.view.getSwitchThemeInput();
+
+    switchInput.addEventListener(
+      "change",
+      this._onSwitchThemeBtnClicked.bind(this)
+    );
+  }
+
+  _onSwitchThemeBtnClicked() {
+    const glContainer = this.view.getGlobalContainer();
+
+    glContainer.classList.toggle(View.CLASS.LIGHT_THEME);
+    glContainer.classList.toggle(View.CLASS.DARK_THEME);
   }
 
   _setCalculatorBtnsListener() {

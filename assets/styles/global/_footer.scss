@@ -2,7 +2,7 @@
 @import "./template";
 
 .footer {
-  background-color: $color-bg-dark;
+  background-color: $color-bg-main;
   &__container {
     padding: 40px 20px;
     .footer__git-link-wrapper {
@@ -27,7 +27,7 @@
         }
         .footer__git-text {
           transition: 0.3s;
-          @include default-p(20px, 20px, $color-text-light);
+          @include default-p(20px, 20px, white);
           @media (max-width: $laptop-s) {
             font-size: 16px;
             line-height: 16px;

@@ -13,10 +13,26 @@
     <title>JS Calculator</title>
   </head>
   <body>
-    <div class="global-container">
+    <div class="global-container dark-theme">
       <header class="header">
         <div class="header__container">
           <h1 class="header__headline">Calculator</h1>
+          <div class="header__theme-wrapper">
+            <img
+              src="./assets/images/light-dark-theme.svg"
+              alt="Switch theme"
+              class="header__theme-icon"
+            />
+            <label class="theme-switch" for="theme-switch">
+              <input
+                type="checkbox"
+                class="theme-switch__input"
+                id="theme-switch"
+                checked
+              />
+              <div class="theme-switch__slider"></div>
+            </label>
+          </div>
         </div>
       </header>
       <main class="main">

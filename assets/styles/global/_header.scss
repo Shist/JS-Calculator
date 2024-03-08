@@ -2,15 +2,17 @@
 @import "./template";
 
 .header {
-  background-color: $color-bg-dark;
+  background-color: $color-bg-main;
   &__container {
     padding: 20px 40px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     @media (max-width: $laptop-l) {
       padding-inline: 20px;
     }
     .header__headline {
-      @include default-h(45px, 45px, $color-text-light);
+      @include default-h(45px, 45px, white);
       @media (max-width: $laptop-l) {
         font-size: 36px;
         line-height: 36px;
@@ -20,5 +22,51 @@
         line-height: 32px;
       }
     }
+    .header__theme-wrapper {
+      display: flex;
+      align-items: center;
+      column-gap: 5px;
+    }
+    .header__theme-icon {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.theme-switch {
+  position: relative;
+  width: 60px;
+  height: 34px;
+  .theme-switch__input {
+    display: none;
+  }
+  .theme-switch__input:checked + .theme-switch__slider {
+    background-color: #2b2b2b;
+  }
+  .theme-switch__input:checked + .theme-switch__slider:before {
+    transform: translateX(26px);
+  }
+  .theme-switch__slider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: 0.4s;
+  }
+  .theme-switch__slider:before {
+    content: "";
+    height: 26px;
+    width: 26px;
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: 0.4s;
   }
 }

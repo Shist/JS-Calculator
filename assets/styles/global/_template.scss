@@ -10,9 +10,27 @@
   min-height: 100vh;
 }
 
+.dark-theme {
+  --font-color: white;
+  --bg-color: #b0a565;
+  --gray-one-color: #303030;
+  --gray-two-color: #535353;
+  --gray-three-color: #7d7d7d;
+  --orange-color: #ff9b0a;
+}
+
+.light-theme {
+  --font-color: black;
+  --bg-color: #f7f3d1;
+  --gray-one-color: #f4f4f4;
+  --gray-two-color: #d8d8d8;
+  --gray-three-color: #aeaeae;
+  --orange-color: #ffac1b;
+}
+
 .active-operation-btn {
-  color: $color-orange !important;
-  background-color: $color-text-light !important;
+  color: var(--orange-color) !important;
+  background-color: var(--font-color) !important;
 }
 
 // Default settings of headlines, you only need to choose font size, line height and text color

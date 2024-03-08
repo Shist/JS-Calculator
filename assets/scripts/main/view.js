@@ -3,6 +3,9 @@
 /** View class. Knows everything about DOM and about data structure which should be filled into UI element. */
 class View {
   static CLASS = {
+    GLOBAL_CONTAINER: "global-container",
+    LIGHT_THEME: "light-theme",
+    DARK_THEME: "dark-theme",
     CALCULATOR: {
       WRAPPER: "calculator",
       SPEC_BTN: "spec-operation-btn",
@@ -32,6 +35,10 @@ class View {
     },
   };
 
+  static ID = {
+    SWITCH_THEME: "theme-switch",
+  };
+
   static DATA_ATTRIBUTE = {
     CALCULATOR: {
       BTN_TYPE: {
@@ -40,6 +47,14 @@ class View {
       },
     },
   };
+
+  getGlobalContainer() {
+    return document.querySelector(`.${View.CLASS.GLOBAL_CONTAINER}`);
+  }
+
+  getSwitchThemeInput() {
+    return document.querySelector(`#${View.ID.SWITCH_THEME}`);
+  }
 
   getCalculatorWrapper() {
     return document.querySelector(`.${View.CLASS.CALCULATOR.WRAPPER}`);
