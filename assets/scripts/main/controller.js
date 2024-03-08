@@ -108,15 +108,16 @@ class Controller {
         break;
     }
 
-    console.log("▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉");
-    console.log(`currNum = ${this.model.currNum}`);
-    console.log(`firstNum = ${this.model.firstNum}`);
-    console.log(`firstOp = ${this.model.firstOp}`);
-    console.log(`secondNum = ${this.model.secondNum}`);
-    console.log(`secondOp = ${this.model.secondOp}`);
-    console.log(`thirdNum = ${this.model.thirdNum}`);
-    console.log(`lastOp = ${this.model.lastOp}`);
-    console.log(`lastNum = ${this.model.lastNum}`);
+    // Here are some logs for testing / debugging
+    // console.log("▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉");
+    // console.log(`currNum = ${this.model.currNum}`);
+    // console.log(`firstNum = ${this.model.firstNum}`);
+    // console.log(`firstOp = ${this.model.firstOp}`);
+    // console.log(`secondNum = ${this.model.secondNum}`);
+    // console.log(`secondOp = ${this.model.secondOp}`);
+    // console.log(`thirdNum = ${this.model.thirdNum}`);
+    // console.log(`lastOp = ${this.model.lastOp}`);
+    // console.log(`lastNum = ${this.model.lastNum}`);
   }
 
   _showCurrentNum() {
